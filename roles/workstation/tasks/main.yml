@@ -32,7 +32,7 @@
   tags: frc
 
 - name: add FRC toolchain PPA public key
-  apt_key: keyserver=keyserver.ubuntu.com id=A06B9F8D55FC4DAE
+  apt_key: keyserver=keyserver.ubuntu.com id=d51c1f785d5d961140546f3aa06b9f8d55fc4dae
   tags: frc
 
 - name: install dev tool packages
