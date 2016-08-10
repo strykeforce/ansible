@@ -43,6 +43,7 @@ workstation:
     - clang-tidy
     - lldb
     - ruby
+    - vim
   cuda:
     - nvidia-cuda-dev
     - nvidia-cuda-toolkit
