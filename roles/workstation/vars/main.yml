@@ -5,6 +5,10 @@ atom:
   target_version: "Version: 1.9.7"
   deb: https://github.com/atom/atom/releases/download/v1.9.7/atom-amd64.deb
 
+libisl13:
+  target_version: "Version: 0.14-1"
+  deb: http://launchpadlibrarian.net/191842424/libisl13_0.14-1_amd64.deb
+
 workstation:
   libs:
     - libjpeg-dev
@@ -44,6 +48,7 @@ workstation:
     - lldb
     - ruby
     - vim
+    - frc-toolchain
   cuda:
     - nvidia-cuda-dev
     - nvidia-cuda-toolkit
