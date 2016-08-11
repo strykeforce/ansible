@@ -29,6 +29,7 @@ These instructions are used for our student loaner development laptops. We insta
 - To run the playbook on a single host, run `ansible-playbook -i inventory site.yml -l <host>`.
 - To exclude a host, run `ansible-playbook -i inventory site.yml -l '!<host>'`
 - To add a user, run
+
   ```sh
   $ python3 -c "from passlib.hash import sha512_crypt; import getpass; print(sha512_crypt.encrypt(getpass.getpass()))"
   $ ansible -i inventory -m user -a 'name=johnd comment="John Doe" password="<crypted password>" shell=/bin/bash' <host>
