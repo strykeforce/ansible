@@ -3,6 +3,7 @@
 
 - name: set hostname
   hostname: name={{inventory_hostname}}
+  when: ansible_virtualization_role != "guest"
   tags: sf
 
 - name: update apt cache
@@ -19,10 +20,12 @@
 
 - name: install ntp
   apt: name=ntp state=latest
+  when: ansible_virtualization_role != "guest"
   tags: ntp
 
 - name: start the ntp service
   service: name=ntp state=started enabled=yes
+  when: ansible_virtualization_role != "guest"
   tags: ntp
 
 - name: install extra packages
@@ -34,3 +37,6 @@
 
 - name: update all packages
   apt: upgrade=dist
+
+- name: display all variables/facts known for a host
+  debug: var=hostvars[inventory_hostname] verbosity=4
