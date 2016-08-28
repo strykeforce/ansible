@@ -12,13 +12,6 @@
   shell: echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
   changed_when: false
 
-- name: install JDK 8
-  apt:
-    name: "{{ java.deb }}"
-    state: latest
-    update_cache: yes
-    cache_valid_time: 3600
-
 - name: configure Bazel distribution as package source
   apt_repository:
     repo: "{{ bazel.source }}"
@@ -29,9 +22,14 @@
   apt_key: url={{ bazel.key }} state=present
   tags: frc
 
+- name: install JDK 8
+  apt:
+    name: "{{ java.deb }}"
+    state: latest
+    update_cache: yes
+
 - name: install Bazel
   apt:
     name: "{{ bazel.deb }}"
     state: latest
     update_cache: yes
-    cache_valid_time: 3600
