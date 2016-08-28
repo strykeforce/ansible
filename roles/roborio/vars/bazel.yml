@@ -1,0 +1,12 @@
+---
+# file: roles/roborio/vars/bazel.yml
+
+java:
+  ppa: ppa:webupd8team/java
+  deb: oracle-java8-installer
+  license: "shared/accepted-oracle-license-v1-1"
+
+bazel:
+  source: "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8"
+  deb: bazel
+  key: https://storage.googleapis.com/bazel-apt/doc/apt-key.pub.gpg

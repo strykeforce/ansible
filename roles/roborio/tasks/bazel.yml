@@ -1,0 +1,37 @@
+---
+# file: roles/roborio/tasks/main.yml
+
+- include_vars: bazel.yml
+
+- name: configure JDK 8 PPA
+  apt_repository:
+    repo: "{{ java.ppa }}"
+    state: present
+
+- name: accept oracle license
+  shell: echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+  changed_when: false
+
+- name: install JDK 8
+  apt:
+    name: "{{ java.deb }}"
+    state: latest
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: configure Bazel distribution as package source
+  apt_repository:
+    repo: "{{ bazel.source }}"
+    filename: bazel
+    state: present
+
+- name: add Bazel public key
+  apt_key: url={{ bazel.key }} state=present
+  tags: frc
+
+- name: install Bazel
+  apt:
+    name: "{{ bazel.deb }}"
+    state: latest
+    update_cache: yes
+    cache_valid_time: 3600
