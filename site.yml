@@ -9,3 +9,5 @@
   roles:
     - workstation
     - golang
+
+- include: pyfrc.yml

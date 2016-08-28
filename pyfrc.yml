@@ -1,0 +1,6 @@
+---
+# file: pyfrc.yml
+
+- hosts: pyfrc
+  roles:
+    - pyfrc
