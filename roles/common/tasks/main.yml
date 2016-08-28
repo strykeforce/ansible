@@ -7,11 +7,10 @@
   tags: sf
 
 - name: fix stdin is not a tty warning
-  lineinfile:
+  replace:
     dest: /root/.profile
-    regexp: '^mesg n'
-    line: tty -s && mesg n
-    state: present
+    regexp: ^mesg n$
+    replace: tty -s && mesg n
 
 - name: update apt cache
   apt: update_cache=yes cache_valid_time=86400
