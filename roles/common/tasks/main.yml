@@ -6,7 +6,7 @@
   when: ansible_virtualization_role != "guest"
   tags: sf
 
-- name: fix stdin: is not a tty warning
+- name: fix stdin is not a tty warning
   lineinfile:
     dest: /root/.profile
     regexp: '^mesg n'
