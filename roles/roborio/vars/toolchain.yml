@@ -1,0 +1,6 @@
+---
+# file: roles/roborio/vars/toolchain.yml
+
+toolchain:
+  ppa: ppa:wpilib/toolchain
+  deb: frc-toolchain

@@ -2,3 +2,4 @@
 # file: roles/roborio/tasks/main.yml
 
 - include: bazel.yml
+- include: toolchain.yml

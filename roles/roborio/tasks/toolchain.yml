@@ -1,0 +1,17 @@
+---
+# file: roles/roborio/tasks/toolchain.yml
+
+- include_vars: toolchain.yml
+
+- name: configure FRC toolchain PPA
+  apt_repository:
+    repo: "{{ toolchain.ppa }}"
+    state: present
+  tags: frc
+
+- name: install dev tool packages
+  apt:
+    name: "{{ toolchain.deb }}"
+    state: latest
+    update_cache: yes
+  tags: tools, frc
