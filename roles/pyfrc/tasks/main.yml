@@ -8,13 +8,6 @@
   with_items: "{{ pyfrc.python }}"
   tags: pyfrc
 
-- name: install pygame deps
-  apt:
-    name: "{{ item }}"
-    state: latest
-  with_items: "{{ pyfrc.pygame_deps }}"
-  tags: pyfrc
-
 - name: install python pips
   pip:
     name: "{{ item }}"
