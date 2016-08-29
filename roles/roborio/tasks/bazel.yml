@@ -25,6 +25,11 @@
   apt_key: url={{ bazel.key }} state=present
   tags: frc
 
+- name: update apt cache
+  apt:
+    update_cache: yes
+  when: java_ppa_state.changed or bazel_ppa_state.changed
+
 - name: install JDK 8
   apt:
     name: "{{ java.deb }}"
