@@ -7,11 +7,17 @@
   apt_repository:
     repo: "{{ toolchain.ppa }}"
     state: present
+  register: toolchain_ppa_state
   tags: frc
 
-- name: install dev tool packages
+- name: update apt cache
+  apt:
+    update_cache: yes
+  when: toolchain_ppa_state.changed
+
+- name: install FRC toolchain
   apt:
     name: "{{ toolchain.deb }}"
     state: latest
-    update_cache: yes
+    update_cache: no
   tags: tools, frc

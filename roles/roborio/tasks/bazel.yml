@@ -7,9 +7,11 @@
   apt_repository:
     repo: "{{ java.ppa }}"
     state: present
+  register: java_ppa_state
 
-- name: accept oracle license
-  shell: echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
+
+- name: accept Oracle JDK license
+  shell: echo debconf {{ java.license }} select true | sudo debconf-set-selections
   changed_when: false
 
 - name: configure Bazel distribution as package source
@@ -17,6 +19,7 @@
     repo: "{{ bazel.source }}"
     filename: bazel
     state: present
+  register: bazel_ppa_state
 
 - name: add Bazel public key
   apt_key: url={{ bazel.key }} state=present
@@ -26,10 +29,12 @@
   apt:
     name: "{{ java.deb }}"
     state: latest
-    update_cache: yes
+    update_cache: no
+  when: java_ppa_state.changed
 
 - name: install Bazel
   apt:
     name: "{{ bazel.deb }}"
     state: latest
-    update_cache: yes
+    update_cache: no
+  when: bazel_ppa_state.changed
