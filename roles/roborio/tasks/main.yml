@@ -3,3 +3,4 @@
 
 - include: bazel.yml
 - include: toolchain.yml
+- include: wpilib.yml

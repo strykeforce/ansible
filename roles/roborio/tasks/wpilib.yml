@@ -1,0 +1,19 @@
+---
+# file: roles/roborio/tasks/wpilib.yml
+
+
+- include_vars: wpilib.yml
+  tags: wpilib
+
+- name: download wpilib plugin
+  get_url:
+    url: "{{ wpilib_url }}"
+    dest: /usr/local/src/{{ wpilib_jar }}
+    checksum: sha256:9b4612ced23415e0001544b5446ff27dafad0784a60e7256a9e8859009bc4369
+  register: download_state
+  tags: wpilib
+
+- name: extract to /opt/wpilib
+  script: unarchive_wpilib.sh /usr/local/src/{{ wpilib_jar }} /opt/wpilib
+  when: download_state.changed
+  tags: wpilib

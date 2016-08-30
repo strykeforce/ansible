@@ -1,0 +1,8 @@
+---
+# file: roles/roborio/vars/wpilib.yml
+
+wpilib_version: 0.1.0.201603020231
+wpilib_jar: edu.wpi.first.wpilib.plugins.cpp_{{ wpilib_version }}.jar
+wpilib_url: http://first.wpi.edu/FRC/roborio/release/eclipse/plugins/{{ wpilib_jar }}
+  # jar: "edu.wpi.first.wpilib.plugins.cpp_0.1.0.201603020231.jar"
+  # url: "http://first.wpi.edu/FRC/roborio/release/eclipse/plugins/edu.wpi.first.wpilib.plugins.cpp_0.1.0.201603020231.jar"
