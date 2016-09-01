@@ -1,0 +1,6 @@
+---
+# file: provision.yml
+
+- hosts: opencv
+  roles:
+    - opencv

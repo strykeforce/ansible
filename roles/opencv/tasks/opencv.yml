@@ -1,0 +1,47 @@
+---
+# file: roles/opencv/tasks/opencv.yml
+
+- include_vars: opencv.yml
+  tags: opencv
+
+- name: install opencv packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ opencv.debs }}"
+  tags: opencv
+
+- name: clone OpenCV repository
+  git:
+    repo: "{{ opencv.repo }}"
+    dest: /usr/local/src/opencv
+    version: "{{ opencv.sha }}"
+  register: git_status
+
+- name: create OpenCV build directory
+  file: path=/usr/local/src/opencv/build state=directory mode=0755
+
+- name: run cmake
+  command: cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..
+  args:
+    chdir: /usr/local/src/opencv/build
+  when: git_status|changed
+
+- name: build OpenCV
+  command: make
+  args:
+    chdir: /usr/local/src/opencv/build
+  when: git_status|changed
+
+- name: install OpenCV
+  command: make install
+  args:
+    chdir: /usr/local/src/opencv/build
+  when: git_status|changed
+
+- name: refresh dynamic linker run-time bindings
+  command: ldconfig
+  when: git_status|changed
+
+- name: work-around for missing 1394 device
+  file: src=/dev/null dest=/dev/raw1394 state=hard

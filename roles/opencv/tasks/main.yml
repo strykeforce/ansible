@@ -1,0 +1,5 @@
+---
+# file: roles/opencv/tasks/main.yml
+
+- include: python.yml
+- include: opencv.yml

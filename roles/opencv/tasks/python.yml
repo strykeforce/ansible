@@ -1,0 +1,12 @@
+---
+# file: roles/opencv/tasks/python.yml
+
+- include_vars: python.yml
+  tags: python
+
+- name: install python packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ python.debs }}"
+  tags: python

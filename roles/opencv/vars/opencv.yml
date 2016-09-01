@@ -1,0 +1,29 @@
+---
+# file: roles/opencv/vars/opencv.yml
+
+opencv:
+  debs:
+    - libjpeg-dev
+    - libtiff5-dev
+    - libjasper-dev
+    - libpng12-dev
+    - libavcodec-dev
+    - libavformat-dev
+    - libswscale-dev
+    - libv4l-dev
+    - libxvidcore-dev
+    - libx264-dev
+    - libtbb2
+    - libtbb-dev
+    - libdc1394-22-dev
+    - libgtk-3-dev
+    - libatlas-base-dev
+    - libgphoto2-dev
+    - git
+    - build-essential
+    - cmake
+    - pkg-config
+    - doxygen
+    - gfortran
+  repo: http://github.com/opencv/opencv
+  sha: 92387b1ef8fad15196dd5f7fb4931444a68bc93a
