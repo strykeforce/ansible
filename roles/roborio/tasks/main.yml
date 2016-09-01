@@ -5,15 +5,6 @@
 - include: toolchain.yml
 - include: wpilib.yml
 
-- name: create .ssh dir for {{ vagrant_user }} user
-  file:
-    path: /home/{{ vagrant_user }}/.ssh
-    state: directory
-    mode: 0700
-    owner: "{{ vagrant_user }}"
-    group: "{{ vagrant_user }}"
-  tags: ssh
-
 # this is ok because we only use this for admin user access
 # admin user password is empty by default
 - name: copy ssh private key to {{ vagrant_user }} user
@@ -33,3 +24,20 @@
     owner: "{{ vagrant_user }}"
     group: "{{ vagrant_user }}"
   tags: ssh
+
+- name: configure {{ vagrant_user }} ssh for roboRIO
+  blockinfile:
+    dest: /home/{{ vagrant_user }}/.ssh/config
+    create: yes
+    state: present
+    mode: 0600
+    owner: "{{ vagrant_user }}"
+    group: "{{ vagrant_user }}"
+    block: |
+      Host roborio-2767-frc.local
+        IdentityFile ~/.ssh/roborio_2767
+        HostName roborio-2767-frc.local
+        User admin
+        StrictHostKeyChecking no
+        UserKnownHostsFile /dev/null
+        LogLevel QUIET
