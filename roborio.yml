@@ -1,7 +1,7 @@
 ---
 # file: provision.yml
 
-- hosts: all
+- hosts: roborio
   roles:
     - common
     - roborio
