@@ -1,2 +1,4 @@
 ---
 # file: roles/roborio/vars/main.yml
+
+vagrant_user: vagrant

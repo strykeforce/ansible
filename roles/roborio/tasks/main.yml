@@ -4,3 +4,32 @@
 - include: bazel.yml
 - include: toolchain.yml
 - include: wpilib.yml
+
+- name: create .ssh dir for {{ vagrant_user }} user
+  file:
+    path: /home/{{ vagrant_user }}/.ssh
+    state: directory
+    mode: 0700
+    owner: "{{ vagrant_user }}"
+    group: "{{ vagrant_user }}"
+  tags: ssh
+
+# this is ok because we only use this for admin user access
+# admin user password is empty by default
+- name: copy ssh private key to {{ vagrant_user }} user
+  copy:
+    src: roborio_2767
+    dest: /home/{{ vagrant_user }}/.ssh/
+    mode: 0600
+    owner: "{{ vagrant_user }}"
+    group: "{{ vagrant_user }}"
+  tags: ssh
+
+- name: copy ssh public key to {{ vagrant_user }} user
+  copy:
+    src: roborio_2767.pub
+    dest: /home/{{ vagrant_user }}/.ssh/
+    mode: 0644
+    owner: "{{ vagrant_user }}"
+    group: "{{ vagrant_user }}"
+  tags: ssh
