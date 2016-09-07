@@ -1,0 +1,6 @@
+---
+# file: atom.yml
+
+- hosts: workstations
+  roles:
+    - atom

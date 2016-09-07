@@ -1,0 +1,14 @@
+---
+# This playbook contains common plays for workstation nodes.
+
+- name: check Atom version
+  shell: dpkg -s atom | grep Version
+  ignore_errors: yes
+  register: atom_version
+  changed_when: false
+  tags: atom
+
+- name: install Atom deb
+  apt: deb={{ atom.deb }}
+  when: atom_version|failed or atom_version.stdout != atom.target_version
+  tags: atom

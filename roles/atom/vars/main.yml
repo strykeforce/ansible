@@ -4,16 +4,3 @@
 atom:
   target_version: "Version: 1.9.7"
   deb: https://github.com/atom/atom/releases/download/v1.9.7/atom-amd64.deb
-
-workstation:
-  tools:
-    - git
-    - build-essential
-    - pkg-config
-    - clang
-    - clang-format
-    - clang-tidy
-    - ruby
-    - vim
-  gems:
-    - gist
