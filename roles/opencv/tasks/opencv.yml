@@ -21,35 +21,35 @@
   tags: opencv
 
 - name: remove old OpenCV build directory
-  file: path=/usr/local/src/opencv/build state=absent mode=0755
+  file: path={{ opencv.src_dir }}/build state=absent mode=0755
 
 - name: clone OpenCV repository
   git:
     repo: "{{ opencv.repo }}"
-    dest: /usr/local/src/opencv
+    dest: "{{ opencv.src_dir }}"
     version: "{{ opencv.sha }}"
   register: git_status
 
 - name: create OpenCV build directory
-  file: path=/usr/local/src/opencv/build state=directory mode=0755
+  file: path={{ opencv.src_dir }}/build state=directory mode=0755
   when: git_status|changed
 
 - name: run cmake
   command: cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..
   args:
-    chdir: /usr/local/src/opencv/build
+    chdir: "{{ opencv.src_dir }}/build"
   when: git_status|changed
 
 - name: build OpenCV
   command: make -j4
   args:
-    chdir: /usr/local/src/opencv/build
+    chdir: "{{ opencv.src_dir }}/build"
   when: git_status|changed
 
 - name: install OpenCV
   command: make install
   args:
-    chdir: /usr/local/src/opencv/build
+    chdir: "{{ opencv.src_dir }}/build"
   when: git_status|changed
 
 - name: refresh dynamic linker run-time bindings

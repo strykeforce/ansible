@@ -2,6 +2,7 @@
 # file: roles/opencv/vars/opencv.yml
 
 opencv:
+  src_dir: /usr/local/src/opencv
   debs:
     - libjpeg-dev
     - libtiff5-dev
