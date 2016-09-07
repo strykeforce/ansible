@@ -32,29 +32,29 @@
 
 - name: create OpenCV build directory
   file: path=/usr/local/src/opencv/build state=directory mode=0755
-  # when: git_status|changed
+  when: git_status|changed
 
 - name: run cmake
   command: cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..
   args:
     chdir: /usr/local/src/opencv/build
-  # when: git_status|changed
+  when: git_status|changed
 
 - name: build OpenCV
   command: make -j4
   args:
     chdir: /usr/local/src/opencv/build
-  # when: git_status|changed
+  when: git_status|changed
 
 - name: install OpenCV
   command: make install
   args:
     chdir: /usr/local/src/opencv/build
-  # when: git_status|changed
+  when: git_status|changed
 
 - name: refresh dynamic linker run-time bindings
   command: ldconfig
-  # when: git_status|changed
+  when: git_status|changed
 
 - name: work-around for missing 1394 device
   file: src=/dev/null dest=/dev/raw1394 state=hard
