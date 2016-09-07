@@ -1,6 +1,40 @@
 ---
 # This playbook contains common plays for workstation nodes.
 
+- name: install python packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ workstation.python }}"
+  tags: python
+
+- name: install jupyter
+  pip: name=jupyter executable=pip3
+  tags: python
+
+- name: check libisl13 version
+  shell: dpkg -s libisl13 | grep Version
+  ignore_errors: yes
+  register: libisl13_version
+  changed_when: false
+  tags: frc
+
+- name: install libisl13 deb
+  apt: deb={{ libisl13.deb }}
+  when: libisl13_version|failed or libisl13_version.stdout != libisl13.target_version
+  tags: frc
+
+- name: configure FRC toolchain PPA
+  apt_repository:
+    repo: 'deb http://ppa.launchpad.net/wpilib/toolchain/ubuntu vivid main'
+    state: present
+    filename: frc-toolchain
+  tags: frc
+
+- name: add FRC toolchain PPA public key
+  apt_key: keyserver=keyserver.ubuntu.com id=d51c1f785d5d961140546f3aa06b9f8d55fc4dae
+  tags: frc
+
 - name: install dev tool packages
   apt:
     name: "{{ item }}"

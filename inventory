@@ -4,7 +4,7 @@
 #
 
 [workstations]
-helium        ansible_host=helium.local
+helium        ansible_host=192.168.0.100
 lithium       ansible_host=192.168.0.106
 #beryllium     ansible_host=192.168.0.00
 boron         ansible_host=192.168.0.102
@@ -19,7 +19,4 @@ sodium        ansible_host=192.168.0.108
 ansible_user=root
 
 [pyfrc:children]
-workstations
-
-[opencv:children]
 workstations
