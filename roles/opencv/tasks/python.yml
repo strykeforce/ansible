@@ -10,3 +10,11 @@
     state: latest
   with_items: "{{ python.debs }}"
   tags: python
+
+- name: install python pips
+  pip:
+    executable: pip3
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ python.pips }}"
+  tags: python
