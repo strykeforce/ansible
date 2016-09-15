@@ -5,15 +5,15 @@
 
 [workstations]
 helium        ansible_host=helium.local
-lithium       ansible_host=192.168.0.106
-#beryllium     ansible_host=192.168.0.00
-boron         ansible_host=192.168.0.102
-carbon        ansible_host=192.168.0.101
-nitrogen      ansible_host=192.168.0.107
-oxygen        ansible_host=192.168.0.104
-fluorine      ansible_host=192.168.0.109
-neon          ansible_host=192.168.0.105
-sodium        ansible_host=192.168.0.108
+lithium       ansible_host=lithium.local
+beryllium     ansible_host=beryllium.local
+boron         ansible_host=boron.local
+carbon        ansible_host=carbon.local
+nitrogen      ansible_host=nitrogen.local
+oxygen        ansible_host=oxygen.local
+fluorine      ansible_host=fluorine.local
+neon          ansible_host=neon.local
+sodium        ansible_host=sodium.local
 
 [workstations:vars]
 ansible_user=root
