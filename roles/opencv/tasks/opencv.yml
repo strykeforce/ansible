@@ -35,7 +35,7 @@
   when: git_status|changed
 
 - name: run cmake
-  command: cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..
+  command: cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX={{ opencv.dest_dir }} ..
   args:
     chdir: "{{ opencv.src_dir }}/build"
   when: git_status|changed
