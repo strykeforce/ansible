@@ -2,5 +2,5 @@
 # file: roles/workstation/vars/main.yml
 
 atom:
-  target_version: "Version: 1.9.7"
-  deb: https://github.com/atom/atom/releases/download/v1.9.7/atom-amd64.deb
+  target_version: "Version: 1.10.2"
+  deb: https://github.com/atom/atom/releases/download/v1.10.2/atom-amd64.deb
