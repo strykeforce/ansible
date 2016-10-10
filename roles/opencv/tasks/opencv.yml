@@ -21,13 +21,13 @@
   tags: opencv
 
 - name: remove old OpenCV build directory
-  file: path={{ opencv.src_dir }}/build state=absent mode=0755
+  file: path={{ opencv.src_dir }}/build state=absent
 
 - name: clone OpenCV repository
   git:
     repo: "{{ opencv.repo }}"
     dest: "{{ opencv.src_dir }}"
-    version: "{{ opencv.sha }}"
+    version: "{{ opencv.version }}"
   register: git_status
 
 - name: create OpenCV build directory
