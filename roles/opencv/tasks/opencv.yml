@@ -3,6 +3,6 @@
 
 - name: install opencv packages
   apt:
-    name: opencv-dev
+    name: libopencv-dev
     state: latest
   tags: opencv
