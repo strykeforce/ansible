@@ -1,61 +1,8 @@
 ---
 # file: roles/opencv/tasks/opencv.yml
 
-- include_vars: opencv.yml
-  tags: opencv
-
 - name: install opencv packages
   apt:
-    name: "{{ item }}"
+    name: opencv-dev
     state: latest
-  with_items: "{{ opencv.debs }}"
   tags: opencv
-
-- name: uninstall nvidia packages
-  apt:
-    name: "{{ item }}"
-    state: absent
-  with_items: "{{ opencv.nvidia }}"
-  when: (ansible_product_name == "HP EliteBook 8460p") or
-        (ansible_virtualization_role == "guest")
-  tags: opencv
-
-- name: remove old OpenCV build directory
-  file: path={{ opencv.src_dir }}/build state=absent
-
-- name: clone OpenCV repository
-  git:
-    repo: "{{ opencv.repo }}"
-    dest: "{{ opencv.src_dir }}"
-    version: "{{ opencv.version }}"
-  register: git_status
-
-- name: create OpenCV build directory
-  file: path={{ opencv.src_dir }}/build state=directory mode=0755
-  when: git_status|changed
-
-- name: run cmake
-  command: cmake -D CMAKE_BUILD_TYPE=RELEASE -D CMAKE_INSTALL_PREFIX=/usr/local ..
-  args:
-    chdir: "{{ opencv.src_dir }}/build"
-  when: git_status|changed
-
-- name: build OpenCV
-  command: make -j4
-  args:
-    chdir: "{{ opencv.src_dir }}/build"
-  when: git_status|changed
-
-- name: install OpenCV
-  command: make install
-  args:
-    chdir: "{{ opencv.src_dir }}/build"
-  when: git_status|changed
-
-- name: refresh dynamic linker run-time bindings
-  command: ldconfig
-  when: git_status|changed
-
-- name: work-around for missing 1394 device
-  file: src=/dev/null dest=/dev/raw1394 state=hard
-  when: ansible_virtualization_role == "guest"
