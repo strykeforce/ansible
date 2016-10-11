@@ -1,0 +1,5 @@
+# file: samba.yml
+---
+- hosts: cmake
+  roles:
+    - cmake
