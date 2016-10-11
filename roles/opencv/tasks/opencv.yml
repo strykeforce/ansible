@@ -1,7 +1,13 @@
 ---
 # file: roles/opencv/tasks/opencv.yml
 
-- name: install opencv packages
+- name: install cmake
+  apt:
+    name: cmake
+    state: latest
+  tags: opencv
+
+- name: install opencv
   apt:
     name: libopencv-dev
     state: latest

@@ -1,0 +1,33 @@
+# File: roles/samba/tasks/main.yml
+---
+
+- name:  install samba
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ samba_packages }}"
+  tags: samba
+
+- name:  add samba users to sambashare group
+  user:
+    name: "{{ item }}"
+    groups: sambashare
+    state: present
+  with_items: "{{ samba_users }}"
+  tags: samba
+
+- name: samba configuration
+  template:
+    dest: /etc/samba/smb.conf
+    src: smb.conf.j2
+    validate: 'testparm -s %s'
+  notify:
+    - restart samba
+  tags: samba
+
+- name: start samba service
+  service:
+    name: smbd
+    state: started
+    enabled: yes
+  tags: samba

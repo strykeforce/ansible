@@ -1,0 +1,6 @@
+# File: roles/samba/handlers/main.yml
+---
+- name: restart samba
+  service:
+    name: smbd
+    state: restarted
