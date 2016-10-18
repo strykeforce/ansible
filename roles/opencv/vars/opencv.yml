@@ -30,7 +30,7 @@ opencv:
     - cheese
     - uvcdynctrl
   repo: http://github.com/opencv/opencv
-  sha: c8d77fd96114c92f23a67134dece131a2a5cbc29
+  version: 2.4
   nvidia:
     - nvidia-cuda-dev
     - nvidia-cuda-doc

@@ -1,0 +1,52 @@
+# file: roles/nfs/tasks/main.yml
+# https://help.ubuntu.com/community/SettingUpNFSHowTo
+---
+
+- name: add NFS users
+  user:
+    name: jeff
+    comment: Jeff Hutchison
+    uid: 501
+    group: dialout
+    groups: adm,sudo,video
+    password: $6$rounds=656000$xyXR12KSe1l9wlup$Wy8dqtNMhM6Uf5rqmFnONqZBRlKt6V6Ui0lKiI.qFumJ.IJLM2.oirSDARzFcJmLxEIruh2ZNllS6id7wf8Xu/
+  tags: nfs
+
+- name: install NFS server
+  apt:
+    name: nfs-kernel-server
+    state: latest
+  tags: nfs
+
+- name: create export point
+  file:
+    path: "{{ export }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0777
+  tags: nfs
+
+- name: mount home directories for export
+  mount:
+    name: "{{ export }}"
+    src: /home
+    fstype: none
+    opts: bind
+    dump: 0
+    passno: 0
+    state: mounted
+  tags: nfs
+
+- name: configure NFS exports
+  copy: src=exports dest=/etc/exports mode=0644
+  notify:
+    - restart NFS server
+  tags: nfs
+
+- name: start NFS service
+  service:
+    name: nfs-kernel-server
+    state: started
+    enabled: yes
+  tags: nfs

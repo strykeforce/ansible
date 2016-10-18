@@ -1,5 +1,5 @@
 ---
-# file: roles/roborio/vars/bazel.yml
+# file: roles/bazel/vars/main.yml
 
 java:
   ppa: ppa:webupd8team/java

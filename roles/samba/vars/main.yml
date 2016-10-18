@@ -1,0 +1,12 @@
+# roles/samba/vars/main.yml
+---
+samba_packages:
+  - samba
+  - samba-common-bin
+  - libtalloc2
+
+samba_users:
+  - jeff
+
+samba_workgroup: SYKFRC
+samba_server_string: 'Fileserver %m'

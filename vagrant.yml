@@ -1,0 +1,8 @@
+---
+# file: vagrant.yml
+
+- include: pyfrc.yml
+- include: opencv.yml
+- include: cmake.yml
+- include: roborio.yml
+- include: bazel.yml

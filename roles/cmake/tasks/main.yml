@@ -1,0 +1,19 @@
+---
+# file: roles/cmake/tasks/main.yml
+
+- name: configure cmake 3 PPA
+  apt_repository:
+    repo: "{{ ppa }}"
+    state: present
+  register: cmake_ppa_state
+
+- name: update apt cache
+  apt:
+    update_cache: yes
+  when: cmake_ppa_state.changed
+
+- name: install cmake
+  apt:
+    name: cmake
+    state: latest
+    update_cache: no

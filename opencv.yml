@@ -4,3 +4,4 @@
 - hosts: opencv
   roles:
     - opencv
+    - cmake
