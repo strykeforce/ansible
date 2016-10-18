@@ -6,3 +6,6 @@
 - include: pyfrc.yml
 - include: opencv.yml
 - include: cmake.yml
+- include: bazel.yml
+- include: samba.yml
+- include: nfs.yml
