@@ -1,7 +1,5 @@
 ---
-# file: roles/roborio/tasks/bazel.yml
-
-- include_vars: bazel.yml
+# file: roles/bazel/tasks/main.yml
 
 - name: configure JDK 8 PPA
   apt_repository:

@@ -1,0 +1,6 @@
+---
+# file: bazel.yml
+
+- hosts: bazel
+  roles:
+    - bazel
