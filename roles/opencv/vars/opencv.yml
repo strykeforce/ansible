@@ -3,6 +3,7 @@
 
 opencv:
   src_dir: /usr/local/src/opencv
+  dest_dir: /opt/opencv
   debs:
     - libjpeg-dev
     - libtiff5-dev
