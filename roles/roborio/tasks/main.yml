@@ -33,7 +33,7 @@
     owner: "{{ vagrant_user }}"
     group: "{{ vagrant_user }}"
     block: |
-      Host roborio-2767-frc.local
+      Host roborio
         IdentityFile ~/.ssh/roborio_2767
         HostName roborio-2767-frc.local
         User admin
