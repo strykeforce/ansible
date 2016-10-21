@@ -5,6 +5,14 @@
 - include_vars: wpilib.yml
   tags: wpilib
 
+- name: install unzip
+  apt:
+    name: unzip
+    state: latest
+    update_cache: no
+  tags: wpilib
+
+
 - name: download wpilib plugin
   get_url:
     url: "{{ wpilib_url }}"
