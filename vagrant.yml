@@ -6,3 +6,4 @@
 - include: cmake.yml
 - include: roborio.yml
 - include: bazel.yml
+- include: deadeye.yml

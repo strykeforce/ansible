@@ -9,3 +9,4 @@
 - include: bazel.yml
 - include: samba.yml
 - include: nfs.yml
+- include: deadeye.yml

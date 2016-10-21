@@ -1,0 +1,6 @@
+# File: roles/deadeye/handlers/main.yml
+---
+- name: restart supervisord
+  service:
+    name: supervisord
+    state: restarted

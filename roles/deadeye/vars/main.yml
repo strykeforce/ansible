@@ -1,0 +1,6 @@
+# file: roles/deadeye/var/main.yml
+---
+debs:
+  - python-pip
+  - libboost-dev
+  - libboost-program-options-dev

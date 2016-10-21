@@ -1,0 +1,6 @@
+---
+# file: deadeye.yml
+
+- hosts: deadeye
+  roles:
+    - deadeye

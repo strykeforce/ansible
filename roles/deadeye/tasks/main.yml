@@ -1,0 +1,34 @@
+# file: roles/deadeye/tasks/main.yml
+---
+
+- name: install required packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ debs }}"
+  tags: deadeye
+
+- name: install supervisor
+  pip:
+    name: supervisor
+    state: latest
+  tags: deadeye
+
+- name: copy supervisor config file
+  copy:
+    src: supervisord.conf
+    dest: /etc/
+    mode: 0644
+  notify:
+    - restart supervisord
+  tags: deadeye
+
+- name: copy supervisor startup file
+  copy: src=supervisord dest=/etc/init.d/ mode=0755
+  tags: deadeye
+
+- name: install and start supervisor service
+  service:
+    name: supervisord
+    enabled: yes
+    state: started
