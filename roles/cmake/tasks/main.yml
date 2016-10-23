@@ -17,3 +17,9 @@
     name: cmake
     state: latest
     update_cache: no
+
+- name: install cmake gui
+  apt:
+    name: cmake-curses-gui
+    state: latest
+    update_cache: no
