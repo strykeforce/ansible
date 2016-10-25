@@ -2,3 +2,7 @@
 # file: roles/cmake/vars/main.yml
 
 ppa: ppa:george-edison55/cmake-3.x
+debs:
+  - cmake
+  - cmake-curses-gui
+  - ninja-build

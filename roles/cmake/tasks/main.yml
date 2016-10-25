@@ -6,20 +6,18 @@
     repo: "{{ ppa }}"
     state: present
   register: cmake_ppa_state
+  tags: cmake
 
 - name: update apt cache
   apt:
     update_cache: yes
   when: cmake_ppa_state.changed
+  tags: cmake
 
-- name: install cmake
+- name: install packages
   apt:
-    name: cmake
+    name: "{{ item }}"
     state: latest
     update_cache: no
-
-- name: install cmake gui
-  apt:
-    name: cmake-curses-gui
-    state: latest
-    update_cache: no
+  with_items: "{{ debs }}"
+  tags: cmake
