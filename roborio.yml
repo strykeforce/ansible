@@ -5,6 +5,4 @@
   roles:
     - common
     - roborio
-    - pyfrc
-    - bazel
     - cmake
