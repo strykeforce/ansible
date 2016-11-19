@@ -6,3 +6,4 @@ common:
     - tree
     - htop
     - avahi-utils
+    - build-essential
