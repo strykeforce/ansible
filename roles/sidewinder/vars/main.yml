@@ -1,6 +1,6 @@
 # roles/sidewinder/vars/main.yml
 ---
-repo: git@gitlab.com:strykeforce2767/sidewinder.git
-version: develop
-build_root: /usr/local/src
+sidewinder_repo: git@gitlab.com:strykeforce2767/sidewinder.git
+sidewinder_version: develop
+sidewinder_build_root: /usr/local/src
 git_keyfile: /home/vagrant/.ssh/gitlab

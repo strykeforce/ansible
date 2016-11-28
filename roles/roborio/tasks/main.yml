@@ -3,6 +3,7 @@
 
 - include: toolchain.yml
 - include: wpilib.yml
+- include: navx.yml
 
 # this is ok because we only use this for admin user access
 # admin user password is empty by default

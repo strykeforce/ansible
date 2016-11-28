@@ -1,0 +1,25 @@
+# roles/navx/tasks/main.yml
+---
+- include_vars: navx.yml
+  tags: navx
+
+- name: download NavX source
+  git:
+    repo: "{{ navx_repo }}"
+    dest: "{{ navx_build_root }}/navx"
+    version: "{{ navx_version }}"
+  register: git_status
+
+- name: create build directory
+  file: path={{ navx_build_root }}/navx/roborio/c++/navx_frc_cpp/build state=directory
+  when: git_status|changed
+
+- name: run cmake
+  command: cmake -DCMAKE_BUILD_TYPE=Release ..
+  args:
+    chdir: "{{ navx_build_root }}/navx/roborio/c++/navx_frc_cpp/build"
+  when: git_status|changed
+
+- name: build and install NavX
+  make: chdir={{ navx_build_root }}/navx/roborio/c++/navx_frc_cpp/build target=install
+  when: git_status|changed

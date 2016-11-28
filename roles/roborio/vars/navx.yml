@@ -1,0 +1,5 @@
+# roles/navx/vars/main.yml
+---
+navx_repo: https://github.com/strykeforce/navxmxp.git
+navx_version: cmake_2016-01-08
+navx_build_root: /usr/local/src
