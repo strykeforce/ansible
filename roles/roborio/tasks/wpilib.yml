@@ -17,11 +17,17 @@
   get_url:
     url: "{{ wpilib_url }}"
     dest: /usr/local/src/{{ wpilib_jar }}
-    checksum: sha256:9b4612ced23415e0001544b5446ff27dafad0784a60e7256a9e8859009bc4369
-  register: download_state
+    checksum: sha256:{{ wpilib_sha256 }}
+  register: wpilib_download
   tags: wpilib
+
+- name: remove old WPILib
+  file:
+    path: /opt/wpilib/
+    state: absent
+  when: wpilib_download.changed
 
 - name: extract to /opt/wpilib
   script: unarchive_wpilib.sh /usr/local/src/{{ wpilib_jar }} /opt/wpilib
-  when: download_state.changed
+  when: wpilib_download.changed
   tags: wpilib

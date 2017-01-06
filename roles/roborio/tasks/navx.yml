@@ -1,4 +1,4 @@
-# roles/navx/tasks/main.yml
+# roles/roborio/tasks/navx.yml
 ---
 - include_vars: navx.yml
   tags: navx
@@ -7,6 +7,7 @@
   get_url:
     url: "{{ navx_url }}"
     dest: /usr/local/src/
+    checksum: sha256:{{ navx_sha256 }}
   register: navx_downloaded
 
 - name: create a temp directory

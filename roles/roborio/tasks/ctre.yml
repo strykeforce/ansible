@@ -1,0 +1,33 @@
+# roles/roborio/tasks/ctre.yml
+---
+- include_vars: ctre.yml
+  tags: ctre
+
+- name: download CTRE library
+  get_url:
+    url: "{{ ctre_url }}"
+    dest: /usr/local/src/
+    checksum: sha256:{{ ctre_sha256 }}
+  register: ctre_downloaded
+
+- name: create a temp directory
+  command: mktemp -d
+  register: mktemp_dir
+  when: ctre_downloaded.changed
+
+- name: unzip CTRE library
+  unarchive:
+    src: /usr/local/src/{{ ctre_zip }}
+    dest: "{{ mktemp_dir.stdout }}/"
+    remote_src: true
+  when: ctre_downloaded.changed
+
+- name: remove old CTRE library
+  file:
+    path: /opt/ctre/
+    state: absent
+  when: ctre_downloaded.changed
+
+- name: install CTRE library
+  command: mv {{ mktemp_dir.stdout }}/cpp /opt/ctre
+  when: ctre_downloaded.changed
