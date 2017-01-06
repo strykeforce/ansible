@@ -1,0 +1,7 @@
+---
+# file: roles/virtualbox/vars/main.yml
+
+virtualbox:
+  source: "deb http://download.virtualbox.org/virtualbox/debian xenial contrib"
+  deb: virtualbox-5.1
+  key: https://www.virtualbox.org/download/oracle_vbox_2016.asc

@@ -1,0 +1,23 @@
+---
+# file: roles/virtualbox/tasks/main.yml
+- name: configure VirtualBox distribution as package source
+  apt_repository:
+    repo: "{{ virtualbox.source }}"
+    filename: virtualbox
+    state: present
+  register: virtualbox_ppa_state
+
+- name: add VirtualBox public key
+  apt_key: url={{ virtualbox.key }} state=present
+  tags: frc
+
+- name: update apt cache
+  apt:
+    update_cache: yes
+  when: virtualbox_ppa_state.changed
+
+- name: install VirtualBox
+  apt:
+    name: "{{ virtualbox.deb }}"
+    state: latest
+    update_cache: no

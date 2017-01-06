@@ -1,0 +1,6 @@
+---
+# file: virtualbox.yml
+
+- hosts: virtualbox
+  roles:
+    - virtualbox
