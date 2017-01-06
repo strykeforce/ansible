@@ -3,23 +3,30 @@
 - include_vars: navx.yml
   tags: navx
 
-- name: download NavX source
-  git:
-    repo: "{{ navx_repo }}"
-    dest: "{{ navx_build_root }}/navx"
-    version: "{{ navx_version }}"
-  register: git_status
+- name: download NavX library
+  get_url:
+    url: "{{ navx_url }}"
+    dest: /usr/local/src/
+  register: navx_downloaded
 
-- name: create build directory
-  file: path={{ navx_build_root }}/navx/roborio/c++/navx_frc_cpp/build state=directory
-  when: git_status|changed
+- name: create a temp directory
+  command: mktemp -d
+  register: mktemp_dir
+  when: navx_downloaded.changed
 
-- name: run cmake
-  command: cmake -DCMAKE_BUILD_TYPE=Release ..
-  args:
-    chdir: "{{ navx_build_root }}/navx/roborio/c++/navx_frc_cpp/build"
-  when: git_status|changed
+- name: unzip NavX library
+  unarchive:
+    src: /usr/local/src/{{ navx_zip }}
+    dest: "{{ mktemp_dir.stdout }}/"
+    remote_src: true
+  when: navx_downloaded.changed
 
-- name: build and install NavX
-  make: chdir={{ navx_build_root }}/navx/roborio/c++/navx_frc_cpp/build target=install
-  when: git_status|changed
+- name: remove old NavX library
+  file:
+    path: /opt/navx/
+    state: absent
+  when: navx_downloaded.changed
+
+- name: install NavX library
+  command: mv {{ mktemp_dir.stdout }}/roborio/cpp /opt/navx
+  when: navx_downloaded.changed
