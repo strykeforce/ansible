@@ -10,7 +10,7 @@ fi
 
 tmp_dir=$(mktemp --directory)
 cd $tmp_dir
-unzip $src
+unzip -qq $src
 
 if [[ ! -d $dest ]]; then
   mkdir -p $dest
@@ -18,4 +18,4 @@ if [[ ! -d $dest ]]; then
 fi
 
 cd $dest
-unzip $tmp_dir/resources/cpp.zip
+unzip -qq $tmp_dir/resources/cpp.zip
