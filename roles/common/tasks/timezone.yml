@@ -1,0 +1,17 @@
+# roles/common/tasks/timezone.yml
+---
+- include_vars: timezone.yml
+  tags: timezone
+
+- name: write /etc/timezone
+  copy:
+    content: "{{ timezone_name }}"
+    dest: /etc/timezone
+    owner: root
+    group: root
+    mode: 0644
+  register: timezone_conf
+
+- name: set timezone
+  command: dpkg-reconfigure --frontend noninteractive tzdata
+  when: timezone_conf.changed
