@@ -5,7 +5,7 @@
 
 - name: write /etc/timezone
   copy:
-    content: "{{ timezone_name }}"
+    src: timezone
     dest: /etc/timezone
     owner: root
     group: root
