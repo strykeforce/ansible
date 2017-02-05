@@ -1,3 +1,3 @@
 # roles/common/vars/timezone.yml
 ---
-timezone_name: US/Michigan
+timezone_name: America/Detroit
