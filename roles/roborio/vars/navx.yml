@@ -2,4 +2,4 @@
 ---
 navx_zip: navx-mxp-libs.zip
 navx_url: http://www.kauailabs.com/public_files/navx-mxp/{{ navx_zip }}
-navx_sha256: 975c180307bbff8d39f7afa371cc08dc27b56351e21685ce685883f09c12c24d
+navx_sha256: 984ff84588ca9b442def61bc8feb3c2f9853094682e99271e268625a5cd777dc
