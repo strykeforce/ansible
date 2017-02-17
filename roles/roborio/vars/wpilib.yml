@@ -1,7 +1,7 @@
 ---
 # file: roles/roborio/vars/wpilib.yml
 
-wpilib_version: 2017.1.1
+wpilib_version: 2017.3.1
 wpilib_jar: edu.wpi.first.wpilib.plugins.cpp_{{ wpilib_version }}.jar
 wpilib_url: http://first.wpi.edu/FRC/roborio/release/eclipse/plugins/{{ wpilib_jar }}
-wpilib_sha256: a30d25b2af3203e456a9ee8009768ca30b770021b917a4525401e024f9a2e9ac
+wpilib_sha256: f9080933b35354cf4da819549e4fe33334c7ce65df8d57fab4a4b2cd51b5913e
