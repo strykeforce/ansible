@@ -31,3 +31,7 @@
 - name: install NavX library
   command: mv {{ mktemp_dir.stdout }}/roborio/cpp /opt/navx
   when: navx_downloaded.changed
+
+- name: install NavX version file
+  command: mv {{ mktemp_dir.stdout }}/version.txt /opt/navx
+  when: navx_downloaded.changed

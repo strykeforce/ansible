@@ -1,5 +1,6 @@
 # roles/roborio/vars/navx.yml
 ---
 navx_zip: navx-mxp-libs.zip
+navx_version: 3.0.327
 navx_url: http://www.kauailabs.com/public_files/navx-mxp/{{ navx_zip }}
-navx_sha256: 984ff84588ca9b442def61bc8feb3c2f9853094682e99271e268625a5cd777dc
+navx_sha256: e36903d68721e45def56ee8b57f587e7e305a74aaddef0489f47f32fe8813069
