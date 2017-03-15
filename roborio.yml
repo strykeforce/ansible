@@ -7,3 +7,4 @@
     - cmake
     - roborio
     - sidewinder
+    - msgpack

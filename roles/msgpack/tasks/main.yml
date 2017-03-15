@@ -1,0 +1,7 @@
+# File: roles/msgpack/tasks/main.yml
+---
+
+- name: download msgpack-c
+  git:
+    repo: https://github.com/msgpack/msgpack-c.git
+    dest: /opt/msgpack-c
