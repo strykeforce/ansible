@@ -37,7 +37,7 @@
     block: |
       Host roborio
         IdentityFile ~/.ssh/roborio_2767
-        HostName roborio-2767-frc.local
+        HostName 10.27.67.2
         User admin
         StrictHostKeyChecking no
         UserKnownHostsFile /dev/null
