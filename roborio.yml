@@ -6,5 +6,5 @@
     - common
     - cmake
     - roborio
-    - sidewinder
+    # - sidewinder, now in robots-cpp repo
     - msgpack
