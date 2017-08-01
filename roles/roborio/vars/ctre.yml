@@ -1,5 +1,5 @@
 # roles/roborio/vars/ctre.yml
 ---
-ctre_zip: CTRE_FRCLibs_NON-WINDOWS.zip
+ctre_zip: CTRE_FRCLibs_NON-WINDOWS_v4.4.1.14.zip
 ctre_url: http://www.ctr-electronics.com/downloads/lib/{{ ctre_zip }}
-ctre_sha256: 936c8a574f1f15767db07a3a457735cf62f77936793216e50c412c7b50280019
+# ctre_sha256: 936c8a574f1f15767db07a3a457735cf62f77936793216e50c412c7b50280019

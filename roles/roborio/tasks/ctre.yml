@@ -7,7 +7,7 @@
   get_url:
     url: "{{ ctre_url }}"
     dest: /usr/local/src/
-    checksum: sha256:{{ ctre_sha256 }}
+    # checksum: sha256:{{ ctre_sha256 }}
   register: ctre_downloaded
 
 - name: create a temp directory
